@@ -16,7 +16,6 @@ const CustomError_1 = __importDefault(require("@outils/CustomError"));
 const ChatRepository_1 = __importDefault(require("@repositories/chat/ChatRepository"));
 const Chat_1 = __importDefault(require("@models/chat/Chat"));
 const Message_1 = __importDefault(require("@models/chat/Message"));
-const NotificationsService_1 = __importDefault(require("@services/notifications/NotificationsService"));
 class ChatService {
     static getUserChats(userId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -58,10 +57,18 @@ class ChatService {
             const newMessage = yield ChatRepository_1.default.createMessage(chatId, sender.user_id, message);
             chat.last_message = message;
             yield chat.save();
-            console.log(`sender: ${sender.user_id}, receiver: chat.receiver_id`);
-            const messageNotificationTarget = chat.sender_id == sender.user_id ? chat.receiver_id : chat.sender_id;
-            console.log("notification target", messageNotificationTarget);
-            yield NotificationsService_1.default.sendNotificationToUser(messageNotificationTarget, sender.username, sender.user_id, chat, message, 'CHAT_MESSAGE');
+            console.log(`sender: ${chat.sender_id}, receiver: ${chat.receiver_id}`);
+            /*const messageNotificationTarget = chat.sender_id === sender.user_id ? chat.receiver_id : chat.sender_id;
+     
+            console.log("notification target",messageNotificationTarget )
+            await NotificationsService.sendNotificationToUser(
+               messageNotificationTarget,
+               sender.username,
+               sender.user_id,
+               chat,
+               message,
+               'CHAT_MESSAGE'
+            ); */
             return newMessage;
         });
     }

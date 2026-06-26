@@ -17,7 +17,11 @@ class SearchController {
     static search(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { query } = req.params;
-            const results = yield SearchService_1.default.search(query);
+            if (!query) {
+                return res.status(400).json({ error: 'Query parameter is required' });
+            }
+            const queryStr = Array.isArray(query) ? query[0] : query;
+            const results = yield SearchService_1.default.search(queryStr);
             res.status(200).json({
                 results: results
             });
