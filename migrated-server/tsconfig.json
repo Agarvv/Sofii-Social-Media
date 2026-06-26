@@ -10,22 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node16",
-    "baseUrl": ".",
-    "paths": {
-      "@controllers/*": ["src/controllers/*"],
-      "@routes/*": ["src/routes/*"],
-      "@models/*": ["src/models/*"],
-      "@services/*": ["src/services/*"],
-      "@config/*": ["src/config/*"],
-      "@validation/*": ["src/validation/*"],
-      "@middleware/*": ["src/middleware/*"],
-      "@helpers/*": ["src/helpers/*"],
-      "@repositories/*": ["src/repositories/*"],
-      "@outils/*": ["src/outils/*"],
-      "@websocket/*": ["src/websocket/*"],
-      "@types/*": ["src/types/*"]
-    }
+    "moduleResolution": "node"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
