@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24,87 +15,73 @@ const websocket_1 = __importDefault(require("@websocket/websocket"));
 const User_1 = __importDefault(require("@models/users/User"));
 const Comment_1 = __importDefault(require("@models/posts/comments/Comment"));
 class PostsService {
-    static createPost(description, picture, userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const io = websocket_1.default.getIO();
-            const newPost = yield Post_1.default.create({
-                description: description,
-                postPicture: picture,
-                user_id: userId,
-            });
-            const fullPost = yield Post_1.default.findByPk(newPost.id, {
-                include: [
-                    { model: User_1.default, as: 'user' },
-                    { model: Likes_1.default, as: 'postLikes' },
-                    { model: SavedPost_1.default, as: 'saved_post' },
-                    { model: Comment_1.default, as: 'postComments' }
-                ]
-            });
-            io.emit('createdPost', fullPost);
+    static async createPost(description, picture, userId) {
+        const io = websocket_1.default.getIO();
+        const newPost = await Post_1.default.create({
+            description: description,
+            postPicture: picture,
+            user_id: userId,
         });
+        const fullPost = await Post_1.default.findByPk(newPost.id, {
+            include: [
+                { model: User_1.default, as: 'user' },
+                { model: Likes_1.default, as: 'postLikes' },
+                { model: SavedPost_1.default, as: 'saved_post' },
+                { model: Comment_1.default, as: 'postComments' }
+            ]
+        });
+        io.emit('createdPost', fullPost);
     }
-    static getPostsAndUsersMayLike() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield PostsRepository_1.default.getPostsAndUsersMayLike();
-        });
+    static async getPostsAndUsersMayLike() {
+        return await PostsRepository_1.default.getPostsAndUsersMayLike();
     }
-    static getPostDetails(postId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const post = yield PostsRepository_1.default.getPostDetails(postId);
-            return post;
-        });
+    static async getPostDetails(postId) {
+        const post = await PostsRepository_1.default.getPostDetails(postId);
+        return post;
     }
-    static deletePostById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const post = yield PostsRepository_1.default.getPostById(id);
-            yield post.destroy();
-        });
+    static async deletePostById(id) {
+        const post = await PostsRepository_1.default.getPostById(id);
+        await post.destroy();
     }
-    static likeOrDislike(postId, user) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const io = websocket_1.default.getIO();
-            const postLike = yield LikesRepository_1.default.getPostLike(postId, user.user_id);
-            const post = yield PostsRepository_1.default.getPostWithoutDetails(postId);
-            if (!post) {
-                throw new CustomError_1.default("Post not found", 404);
-            }
-            if (postLike) {
-                yield postLike.destroy();
-                io.emit('unlikePost', postLike);
-                return "Post Unliked!";
-            }
-            const newLike = yield Likes_1.default.create({
-                post_id: postId,
-                user_id: user.user_id
-            });
-            io.emit('likePost', newLike);
-            if (user.user_id !== post.user_id) {
-                yield NotificationsService_1.default.sendNotificationToUser(post.user_id, user.username, user.user_id, post, null, 'POST_LIKED');
-            }
-            return "Post Liked!";
+    static async likeOrDislike(postId, user) {
+        const io = websocket_1.default.getIO();
+        const postLike = await LikesRepository_1.default.getPostLike(postId, user.user_id);
+        const post = await PostsRepository_1.default.getPostWithoutDetails(postId);
+        if (!post) {
+            throw new CustomError_1.default("Post not found", 404);
+        }
+        if (postLike) {
+            await postLike.destroy();
+            io.emit('unlikePost', postLike);
+            return "Post Unliked!";
+        }
+        const newLike = await Likes_1.default.create({
+            post_id: postId,
+            user_id: user.user_id
         });
+        io.emit('likePost', newLike);
+        if (user.user_id !== post.user_id) {
+            await NotificationsService_1.default.sendNotificationToUser(post.user_id, user.username, user.user_id, post, null, 'POST_LIKED');
+        }
+        return "Post Liked!";
     }
-    static saveOrUnsave(postId, userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const io = websocket_1.default.getIO();
-            const saved = yield SavedRepository_1.default.getSaved(postId, userId);
-            if (saved) {
-                yield saved.destroy();
-                io.emit('unsavedPost', saved);
-                return "¡Post Unsaved!";
-            }
-            const newSaved = yield SavedPost_1.default.create({
-                user_id: userId,
-                post_id: postId
-            });
-            io.emit('savedPost', newSaved);
-            return "¡Post Saved!";
+    static async saveOrUnsave(postId, userId) {
+        const io = websocket_1.default.getIO();
+        const saved = await SavedRepository_1.default.getSaved(postId, userId);
+        if (saved) {
+            await saved.destroy();
+            io.emit('unsavedPost', saved);
+            return "¡Post Unsaved!";
+        }
+        const newSaved = await SavedPost_1.default.create({
+            user_id: userId,
+            post_id: postId
         });
+        io.emit('savedPost', newSaved);
+        return "¡Post Saved!";
     }
-    static getSaveds(userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield SavedRepository_1.default.getSaveds(userId);
-        });
+    static async getSaveds(userId) {
+        return await SavedRepository_1.default.getSaveds(userId);
     }
 }
 exports.default = PostsService;

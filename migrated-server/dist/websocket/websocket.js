@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -27,22 +18,22 @@ exports.default = {
                 credentials: true,
             },
         });
-        io.on('connection', (socket) => __awaiter(void 0, void 0, void 0, function* () {
+        io.on('connection', async (socket) => {
             const cookies = socket.request.headers.cookie
                 ? cookie_1.default.parse(socket.request.headers.cookie)
                 : {};
             const jwtToken = cookies.jwt;
             if (!jwtToken)
                 return;
-            const userDecoded = yield JwtHelper_1.default.verifyToken(jwtToken);
+            const userDecoded = await JwtHelper_1.default.verifyToken(jwtToken);
             socket.join(String(userDecoded.user_id));
-            yield ProfileService_1.default.setUserStatus('online', userDecoded.user_id);
-            socket.on('chatMessage', (data) => __awaiter(void 0, void 0, void 0, function* () {
+            await ProfileService_1.default.setUserStatus('online', userDecoded.user_id);
+            socket.on('chatMessage', async (data) => {
                 const { message, chat_id } = data;
                 socket.join(String(chat_id));
-                const newMessage = yield ChatService_1.default.sendMessage(message, chat_id, userDecoded);
-                io === null || io === void 0 ? void 0 : io.to(String(chat_id)).emit('chatMessage', newMessage);
-            }));
+                const newMessage = await ChatService_1.default.sendMessage(message, chat_id, userDecoded);
+                io?.to(String(chat_id)).emit('chatMessage', newMessage);
+            });
             socket.on('typing', (chatId) => {
                 socket.join(chatId);
                 socket.to(chatId).emit('typing');
@@ -51,15 +42,15 @@ exports.default = {
                 socket.join(chatId);
                 socket.to(chatId).emit('stopTyping');
             });
-            socket.on('readMessage', (data) => __awaiter(void 0, void 0, void 0, function* () {
+            socket.on('readMessage', async (data) => {
                 socket.join(String(data.chatId));
-                const readedMessage = yield ChatService_1.default.readMessage(data.messageId);
+                const readedMessage = await ChatService_1.default.readMessage(data.messageId);
                 socket.to(String(data.chatId)).emit('readMessage', readedMessage);
-            }));
-            socket.on('disconnect', () => __awaiter(void 0, void 0, void 0, function* () {
-                yield ProfileService_1.default.setUserStatus('offline', userDecoded.user_id);
-            }));
-        }));
+            });
+            socket.on('disconnect', async () => {
+                await ProfileService_1.default.setUserStatus('offline', userDecoded.user_id);
+            });
+        });
         return io;
     },
     getIO: () => {
