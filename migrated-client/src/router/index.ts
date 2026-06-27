@@ -38,57 +38,90 @@ const routes: Array<RouteRecordRaw> = [
     name: "resetPassword"
   },  
   {
-      path: '/',
-        component: HomeView,
-        name: "home",
+    path: '/',
+    component: HomeView,
+    name: "home",
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-      path: '/post/:id',
-      component: PostDetails,
-      name: "postDetails"
+    path: '/post/:id',
+    component: PostDetails,
+    name: "postDetails",
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/create',
     component: CreateView,
-    name: "create"
+    name: "create",
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/profile/:id',
-    component: ProfileView 
+    component: ProfileView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-      path: '/chat/:id',
-      component: ChatView,
-      name: "chat"
+    path: '/chat/:id',
+    component: ChatView,
+    name: "chat",
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-      path: '/search/:query',
-      component: SearchView
+    path: '/search/:query',
+    component: SearchView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/',
     component: MainLayout,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '/chats',
         component: ChatsView,
-        name: "chats"
+        name: "chats",
+        meta: {
+          requiresAuth: true
+        }
       },
       {
         path: '/saved',
         component: SavedView,
-        name: "saved"
+        name: "saved",
+        meta: {
+          requiresAuth: true
+        }
       },
       {
         path: '/notifications',
         component: NotificationsView,
-        name: "notifications"
-    },
-    {
-      path: '/friends', 
-      component: FriendsView,
-      name: "friends"
-    },
+        name: "notifications",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/friends', 
+        component: FriendsView,
+        name: "friends",
+        meta: {
+          requiresAuth: true
+        }
+      },
     ]
   }
 ]
@@ -116,11 +149,12 @@ const isAuthenticated = async (): Promise<boolean> => {
 }
 
 router.beforeEach(async (to, from, next) => {
+  console.log("PIIIIII = 3.14")
   if (to.meta.requiresAuth) {
     const authenticated = await isAuthenticated();  
 
     if (!authenticated) {
-      next({ name: 'login' });
+      next({ name: 'register' });
     } else {
       next(); 
     }
