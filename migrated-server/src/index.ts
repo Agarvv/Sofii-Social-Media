@@ -44,12 +44,15 @@ websocket.init(server);
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+/* 
 app.use((req, res, next) => {
   if (req.path.startsWith('/api/sofii/auth') || req.path.startsWith('/auth')) {
-    return next()
-  }  
-  authMiddleware(req, res, next); 
-}); 
+    return next();
+  }
+
+  return authMiddleware(req, res, next);
+});
+*/
 
 app.use(router);
 

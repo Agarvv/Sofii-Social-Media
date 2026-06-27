@@ -4,6 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const SearchService_1 = __importDefault(require("@services/search/SearchService"));
+//    
+// 
+//
 class SearchController {
     static async search(req, res) {
         const { query } = req.params;

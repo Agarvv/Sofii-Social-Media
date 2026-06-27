@@ -5,22 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const JwtHelper_1 = __importDefault(require("@helpers/JwtHelper"));
 const authMiddleware = (req, res, next) => {
-    const jwtToken = req.cookies.jwt;
+    const jwtToken = req.cookies?.jwt;
     if (!jwtToken) {
-        res.status(401).json({
-            error: "Please log in."
+        return res.status(401).json({
+            error: "Please log in.",
         });
     }
     try {
         const decoded = JwtHelper_1.default.verifyToken(jwtToken);
-        console.log(decoded);
         req.account = decoded;
-        next();
+        return next();
     }
     catch (error) {
-        console.log(error);
-        res.status(401).json({
-            error: "Please log in."
+        return res.status(401).json({
+            error: "Please log in.",
         });
     }
 };
