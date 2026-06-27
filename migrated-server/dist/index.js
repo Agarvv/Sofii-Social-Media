@@ -46,6 +46,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const http_1 = __importDefault(require("http"));
 const websocket_1 = __importDefault(require("./websocket/websocket"));
+const AuthMiddleware_1 = __importDefault(require("@middleware/AuthMiddleware"));
 const passport_1 = __importDefault(require("passport"));
 const express_session_1 = __importDefault(require("express-session"));
 require("@config/GooglePassport");
@@ -70,22 +71,21 @@ const server = http_1.default.createServer(app);
 websocket_1.default.init(server);
 app.use((0, cookie_parser_1.default)());
 app.use(body_parser_1.default.json());
-/*
 app.use((req, res, next) => {
-  if (req.path.startsWith('/api/sofii/auth') || req.path.startsWith('/auth')) {
-    return next();
-  }
-
-  return authMiddleware(req, res, next);
+    if (req.path.startsWith('/api/sofii/auth') || req.path.startsWith('/auth')) {
+        return next();
+    }
+    return (0, AuthMiddleware_1.default)(req, res, next);
 });
-*/
 app.use(routes_1.default);
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(err.status || 500).json({ message: err.message || 'Internal Server Error' });
 });
 app.get('/', (req, res) => {
-    res.send('Sofii API Migration to TypeScript is OK!');
+    console.log("ROOT START");
+    res.send("OK");
+    console.log("ROOT AFTER SEND");
 });
 const port = process.env.PORT || 3000;
 server.listen(port, async () => {

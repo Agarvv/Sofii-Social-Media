@@ -44,7 +44,7 @@ websocket.init(server);
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-/* 
+
 app.use((req, res, next) => {
   if (req.path.startsWith('/api/sofii/auth') || req.path.startsWith('/auth')) {
     return next();
@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 
   return authMiddleware(req, res, next);
 });
-*/
+
 
 app.use(router);
 
@@ -61,8 +61,13 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500).json({ message: err.message || 'Internal Server Error' });
 });
 
+
 app.get('/', (req: Request, res: Response) => {
-  res.send('Sofii API Migration to TypeScript is OK!');
+  console.log("ROOT START");
+
+  res.send("OK");
+
+  console.log("ROOT AFTER SEND");
 });
 
 const port = process.env.PORT || 3000;
