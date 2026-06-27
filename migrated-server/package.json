@@ -74,5 +74,8 @@
     "@outils": "dist/outils",
     "@websocket": "dist/websocket",
     "@types": "dist/types"
-  }
+  },
+  "engines": {
+  "node": "20.x"
+}
 }
