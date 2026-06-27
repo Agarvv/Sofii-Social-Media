@@ -6,7 +6,7 @@ import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query';
 import io from 'socket.io-client';
 
 
-/*const socket = io('https://sofii-vsly.onrender.com', {
+/*const socket = io('https://sofii-vsly-pkta.onrender.com', {
     withCredentials: true 
 })
 

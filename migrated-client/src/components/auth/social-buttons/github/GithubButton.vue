@@ -11,7 +11,7 @@
       name: 'GitHubButton',
       setup() {
           const githubLogin = () => {
-              window.location.href = "https://sofii-vsly.onrender.com/api/sofii/auth/github"; 
+              window.location.href = "https://sofii-vsly-pkta.onrender.com/api/sofii/auth/github"; 
           }
           
           return {

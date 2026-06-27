@@ -11,7 +11,7 @@
       name: 'GoogleButton',
       setup() {
           const googleLogin = () => {
-              window.location.href = "https://sofii-vsly.onrender.com/api/sofii/auth/google"; 
+              window.location.href = "https://sofii-vsly-pkta.onrender.com/api/sofii/auth/google"; 
           }
           
           return {

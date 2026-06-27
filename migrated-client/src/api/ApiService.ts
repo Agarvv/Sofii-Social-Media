@@ -26,4 +26,4 @@ class ApiService {
   }
 }
 
-export const apiService = new ApiService('https://sofii-vsly.onrender.com/api/sofii');
+export const apiService = new ApiService('https://sofii-vsly-pkta.onrender.com/api/sofii');

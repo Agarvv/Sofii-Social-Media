@@ -101,7 +101,7 @@ const router = createRouter({
 
 const isAuthenticated = async (): Promise<boolean> => {
   try {
-    const response = await axios.get('https://sofii-vsly.onrender.com/api/sofii/auth/check', {
+    const response = await axios.get('https://sofii-vsly-pkta.onrender.com/api/sofii/auth/check', {
         withCredentials: true 
     }); 
     
