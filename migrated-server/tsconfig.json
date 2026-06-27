@@ -17,6 +17,7 @@
     "forceConsistentCasingInFileNames": true,
 
     "baseUrl": ".",
+    "types": ["node"],
 
     "paths": {
       "@controllers/*": ["src/controllers/*"],
@@ -31,7 +32,7 @@
       "@outils/*": ["src/outils/*"],
       "@websocket/*": ["src/websocket/*"],
       "@types/*": ["src/types/*"]
-    },
+    }
   },
 
   "include": ["src/**/*"],
