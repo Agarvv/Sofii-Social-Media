@@ -21,10 +21,10 @@
           </div>
           
           <div class="form-links">
-            <div @click="$router.push('/send-reset-password')">
+            <div @click="$router.push({ name: 'send-reset-password'})">
               <a href="">Forgot Your Password?</a>
             </div>
-            <div @click="$router.push('/register')">
+            <div @click="$router.push({ name: 'register'})">
               <a href="">Don't have an account?</a>
             </div>
           </div>
