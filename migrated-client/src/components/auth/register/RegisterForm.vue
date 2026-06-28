@@ -39,7 +39,7 @@
               </button>
             </div>
             <div class="form-links">
-              <div @click="router.push('/login')">
+              <div @click="$router.push('/login')">
                 <a href="">Already Have An Account?</a>
               </div>
             </div>
@@ -103,7 +103,6 @@ export default {
       password,
       username, 
       errors,
-      router,
       handleSubmit: handleSubmit(onSubmit),
     };
   },
