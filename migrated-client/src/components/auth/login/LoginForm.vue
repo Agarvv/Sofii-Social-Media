@@ -28,7 +28,7 @@
         </div>
         
         <div class="form-links">
-          <div>
+          <div @click="goToRoute('/send-reset-password')">
             <a href="">Forgot Your Password?</a>
           </div>
           <div @click="goToRoute('/register')">
@@ -46,10 +46,7 @@
     
      
   <div class="social-buttons">
-    
-    <GoogleButton /> 
-  
-    <GithubButton /> 
+     
   
       </div>
     </div>

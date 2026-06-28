@@ -39,7 +39,7 @@
               </button>
             </div>
             <div class="form-links">
-              <div>
+              <div @click="goToRoute('/register')">
                 <a href="">Already Have An Account?</a>
               </div>
             </div>
