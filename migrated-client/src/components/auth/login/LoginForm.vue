@@ -62,8 +62,8 @@
   import { useRouter } from 'vue-router';
   import { apiService } from '@/api/ApiService';
   import { usePost } from '@/composables/usePost';
-  import GoogleButton from '../social-buttons/google/GoogleButton.vue'
-  import GithubButton from '../social-buttons/github/GithubButton.vue'
+  // import GoogleButton from '../social-buttons/google/GoogleButton.vue'
+ // import GithubButton from '../social-buttons/github/GithubButton.vue'
 
   interface LoginFormValues {
     email: string;
@@ -73,8 +73,8 @@
   export default defineComponent({
     name: 'LoginForm',
     components: {
-        GoogleButton,
-        GithubButton 
+      //  GoogleButton,
+       // GithubButton 
     }, 
     setup() {
       const router = useRouter();
