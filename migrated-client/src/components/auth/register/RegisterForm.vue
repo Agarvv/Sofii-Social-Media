@@ -39,7 +39,7 @@
               </button>
             </div>
             <div class="form-links">
-              <div @click="goToRoute('/login')">
+              <div @click="router.push('/login')">
                 <a href="">Already Have An Account?</a>
               </div>
             </div>
@@ -47,13 +47,11 @@
         </div>
         <div class="login-social-media">
           <div class="social-buttons">
-            <!-- Social media buttons here -->
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -105,6 +103,7 @@ export default {
       password,
       username, 
       errors,
+      router,
       handleSubmit: handleSubmit(onSubmit),
     };
   },
