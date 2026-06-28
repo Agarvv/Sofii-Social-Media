@@ -39,8 +39,8 @@
               </button>
             </div>
             <div class="form-links">
-              <div @click="$router.push({ name: 'login' })"">
-                <a href="">Already Have An Account?</a>
+              <div @click="goToLogin">
+                <a href="javascript:void(0)">Already Have An Account?</a>
               </div>
             </div>
           </form>
@@ -98,12 +98,17 @@ export default {
       await mutate(values); 
     };
 
+    const goToLogin = () => {
+      router.push({ name: 'login' });
+    };
+
     return {
       email,
       password,
       username, 
       errors,
       handleSubmit: handleSubmit(onSubmit),
+      goToLogin,
     };
   },
 };
