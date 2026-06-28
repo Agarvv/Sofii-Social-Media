@@ -1,3 +1,4 @@
+// router/index.ts
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import MainLayout from '@/layouts/main/MainLayout.vue'
@@ -21,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/register',
     component: RegisterView,
     name: "register",
-     meta: {
+    meta: {
       requiresAuth: false
     }
   }, 
@@ -29,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     component: LoginView,
     name: "login", 
-      meta: {
+    meta: {
       requiresAuth: false
     }
   },
@@ -37,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/send-reset-password',
     component: SendResetPasswordView,
     name: "sendResetPassword",
-      meta: {
+    meta: {
       requiresAuth: false
     }
   }, 
@@ -45,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/reset-password/:email/:token',
     component: ResetPasswordView,
     name: "resetPassword",
-      meta: {
+    meta: {
       requiresAuth: false
     }
   },  
@@ -143,37 +144,39 @@ const router = createRouter({
   routes
 })
 
+let isAuthChecked = false
+let isAuthenticated = false
 
-const isAuthenticated = async (): Promise<boolean> => {
+const checkAuth = async (): Promise<boolean> => {
+  if (isAuthChecked) {
+    return isAuthenticated
+  }
+  
   try {
     const response = await axios.get('https://sofii-vsly-pkta.onrender.com/api/sofii/auth/check', {
-        withCredentials: true 
-    }); 
+      withCredentials: true 
+    })
     
-    console.log('authenticated response', response)
-    
-    console.log("authenticated condition", response.status == 200)
-    return response.status == 200; 
-    
+    isAuthenticated = response.status === 200
+    isAuthChecked = true
+    return isAuthenticated
   } catch (error) {
-    return false;  
+    isAuthenticated = false
+    isAuthChecked = true
+    return false
   }
 }
 
 router.beforeEach(async (to, from, next) => {
-  console.log("PIIIIII = 3.14")
-  if (to.meta.requiresAuth) {
-    const authenticated = await isAuthenticated();  
-
-    if (!authenticated) {
-      next({ name: 'register' });
-    } else {
-      next(); 
-    }
+  const authenticated = await checkAuth()
+  
+  if (to.meta.requiresAuth && !authenticated) {
+    next({ name: 'login' })
+  } else if ((to.name === 'login' || to.name === 'register' || to.name === 'sendResetPassword') && authenticated) {
+    next({ name: 'home' })
   } else {
-    console.log("nnnnnnnnnooo")
-    next();  
+    next()
   }
-});
+})
 
 export default router
