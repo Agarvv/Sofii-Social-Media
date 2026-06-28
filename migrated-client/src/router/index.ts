@@ -20,22 +20,34 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/register',
     component: RegisterView,
-    name: "register"
+    name: "register",
+     meta: {
+      requiresAuth: false
+    }
   }, 
   {
     path: '/login',
     component: LoginView,
-    name: "login"
+    name: "login", 
+      meta: {
+      requiresAuth: false
+    }
   },
   {
     path: '/send-reset-password',
     component: SendResetPasswordView,
-    name: "sendResetPassword"
+    name: "sendResetPassword",
+      meta: {
+      requiresAuth: false
+    }
   }, 
   {
     path: '/reset-password/:email/:token',
     component: ResetPasswordView,
-    name: "resetPassword"
+    name: "resetPassword",
+      meta: {
+      requiresAuth: false
+    }
   },  
   {
     path: '/',
