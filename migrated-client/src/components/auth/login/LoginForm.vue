@@ -21,11 +21,11 @@
           </div>
           
           <div class="form-links">
-            <div @click="$router.push({ name: 'send-reset-password'})">
-              <p>Forgot Your Password ?</p>
+            <div> 
+              <p @click="$router.push({ name: 'send-reset-password'})">Forgot Your Password ?</p>
             </div>
-            <div @click="$router.push({ name: 'register'})">
-              <p>Dont have an account ?</p>
+            <div>
+              <p @click="$router.push({ name: 'register'})">Dont have an account ?</p>
             </div>
           </div>
         </form>
@@ -76,7 +76,7 @@ export default defineComponent({
       serviceFunc: (data: LoginFormValues) => apiService.post('/auth/login', data),
       successFunc: (response: any) => {
         localStorage.setItem('userId', response.userId);
-        router.push({ name: "home"})
+        router.push({ name: "home" })
       },
       withError: true,
       withLoading: true,
