@@ -144,8 +144,9 @@ const router = createRouter({
   routes
 })
 
-let isAuthChecked = false
-let isAuthenticated = false
+
+//let isAuthChecked = false
+//let isAuthenticated = false
 /*
 const checkAuth = async (): Promise<boolean> => {
   if (isAuthChecked) {
