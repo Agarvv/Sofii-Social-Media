@@ -22,7 +22,7 @@
           
           <div class="form-links">
             <div> 
-              <p @click="$router.push({ name: 'send-reset-password'})">Forgot Your Password ?</p>
+               <p @click.prevent="$router.push({ name: 'send-reset-password' })">Forgot Your Password ?</p>
             </div>
             <div>
               <p @click="$router.push({ name: 'register'})">Dont have an account ?</p>
