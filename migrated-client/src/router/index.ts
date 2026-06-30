@@ -145,9 +145,9 @@ const router = createRouter({
 })
 
 
-//let isAuthChecked = false
-//let isAuthenticated = false
-/*
+let isAuthChecked = false
+let isAuthenticated = false
+
 const checkAuth = async (): Promise<boolean> => {
   if (isAuthChecked) {
     return isAuthenticated
@@ -179,6 +179,6 @@ router.beforeEach(async (to, from, next) => {
     next()
   }
 })
-  */
+  
 
 export default router

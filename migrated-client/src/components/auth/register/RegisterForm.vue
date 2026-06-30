@@ -40,7 +40,7 @@
             </div>
             <div class="form-links">
               <div @click="goToLogin">
-                <a href="javascript:void(0)">Already Have An Account?</a>
+                <p>Already have an account ?</p>
               </div>
             </div>
           </form>
