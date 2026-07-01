@@ -52,59 +52,59 @@ const routes: Array<RouteRecordRaw> = [
   },  
   {
     path: '/',
-    component: HomeView,
-    name: "home",
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/post/:id',
-    component: PostDetails,
-    name: "postDetails",
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/create',
-    component: CreateView,
-    name: "create",
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/profile/:id',
-    component: ProfileView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/chat/:id',
-    component: ChatView,
-    name: "chat",
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/search/:query',
-    component: SearchView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/',
-    component: MainLayout,
+    component: MainLayout, 
     meta: {
       requiresAuth: true
     },
     children: [
       {
-        path: '/chats',
+        path: '', 
+        component: HomeView,
+        name: "home",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'post/:id',
+        component: PostDetails,
+        name: "postDetails",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'create',
+        component: CreateView,
+        name: "create",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'profile/:id',
+        component: ProfileView,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'chat/:id',
+        component: ChatView,
+        name: "chat",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'search/:query',
+        component: SearchView,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'chats',
         component: ChatsView,
         name: "chats",
         meta: {
@@ -112,7 +112,7 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: '/saved',
+        path: 'saved',
         component: SavedView,
         name: "saved",
         meta: {
@@ -120,7 +120,7 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: '/notifications',
+        path: 'notifications',
         component: NotificationsView,
         name: "notifications",
         meta: {
@@ -128,7 +128,7 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: '/friends', 
+        path: 'friends', 
         component: FriendsView,
         name: "friends",
         meta: {
@@ -143,7 +143,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-
 
 let isAuthChecked = false
 let isAuthenticated = false
