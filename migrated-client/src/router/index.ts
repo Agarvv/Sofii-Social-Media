@@ -144,6 +144,7 @@ const router = createRouter({
   routes
 })
 
+/*
 let isAuthChecked = false
 let isAuthenticated = false
 
@@ -179,5 +180,5 @@ router.beforeEach(async (to, from, next) => {
   }
 })
   
-
+*/
 export default router
