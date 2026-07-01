@@ -144,41 +144,30 @@ const router = createRouter({
   routes
 })
 
-/*
-let isAuthChecked = false
-let isAuthenticated = false
 
-const checkAuth = async (): Promise<boolean> => {
-  if (isAuthChecked) {
-    return isAuthenticated
-  }
-  
+router.beforeEach(async (to, from, next) => {
   try {
     const response = await axios.get('https://sofii-vsly-pkta.onrender.com/api/sofii/auth/check', {
       withCredentials: true 
     })
     
-    isAuthenticated = response.status === 200
-    isAuthChecked = true
-    return isAuthenticated
+    const isAuthenticated = response.status === 200
+    
+    if (to.meta.requiresAuth && !isAuthenticated) {
+      next({ name: 'login' })
+    } else if ((to.name === 'login' || to.name === 'register' || to.name === 'sendResetPassword') && isAuthenticated) {
+      next({ name: 'home' })
+    } else {
+      next()
+    }
   } catch (error) {
-    isAuthenticated = false
-    isAuthChecked = true
-    return false
-  }
-}
-
-router.beforeEach(async (to, from, next) => {
-  const authenticated = await checkAuth()
-  
-  if (to.meta.requiresAuth && !authenticated) {
-    next({ name: 'login' })
-  } else if ((to.name === 'login' || to.name === 'register' || to.name === 'sendResetPassword') && authenticated) {
-    next({ name: 'home' })
-  } else {
-    next()
+    if (to.meta.requiresAuth) {
+      next({ name: 'register' })
+    } else {
+      next()
+    }
   }
 })
-  
-*/
+
+
 export default router
