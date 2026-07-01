@@ -88,7 +88,7 @@ export default {
     
     const { mutate } = usePost<RegisterFormValues>({
       serviceFunc: (data: RegisterFormValues) => apiService.post('/auth/register', data),
-      successFunc: () => router.push({ name: "home"}), 
+      successFunc: () => router.push('/'), 
       withError: true,
       withLoading: true,
     });
