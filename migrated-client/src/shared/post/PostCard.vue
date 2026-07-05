@@ -4,7 +4,7 @@
         <div>
           <img
           style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"
-          :src="post.user.profilePicture ?? '/public/default.jpg'"
+          src="/migrated-client/images/default.jpg"
           alt="Post Owner"
           />
         </div>
