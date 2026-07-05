@@ -3,14 +3,9 @@
       <div class="post-header">
         <div>
           <img
-            style="
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              object-fit: cover;
-            "
-            :src="post.user.profilePicture"
-            alt="Post Owner"
+          style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"
+          :src="post.user.profilePicture ?? '/public/default.jpg'"
+          alt="Post Owner"
           />
         </div>
         <div class="post-user-detail">

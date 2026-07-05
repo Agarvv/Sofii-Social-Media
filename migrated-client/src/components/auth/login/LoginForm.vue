@@ -21,9 +21,6 @@
           </div>
           
           <div class="form-links">
-            <div> 
-               <p @click.prevent="$router.push({ name: 'sendResetPassword' })">Forgot Your Password ?</p>
-            </div>
             <div>
               <p @click="$router.push({ name: 'register'})">Dont have an account ?</p>
             </div>
