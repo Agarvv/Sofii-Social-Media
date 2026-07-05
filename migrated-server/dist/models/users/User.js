@@ -36,6 +36,7 @@ User.init({
     profilePicture: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
+        defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh2-2t3Bmos3JVvS5V1NtxI-RlRjVIHLcp-sf55WCcEA&s=10"
     },
     bio: {
         type: sequelize_1.DataTypes.TEXT,
@@ -98,6 +99,7 @@ User.init({
     banner: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
+        defaultValue: "https://img.magnific.com/free-vector/banner-with-gingham-tablecloth-top-view-design_107791-12974.jpg?semt=ais_hybrid&w=740&q=80"
     },
     active: {
         type: sequelize_1.DataTypes.BOOLEAN,

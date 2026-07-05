@@ -3,9 +3,14 @@
       <div class="post-header">
         <div>
           <img
-          style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh2-2t3Bmos3JVvS5V1NtxI-RlRjVIHLcp-sf55WCcEA&s=10"
-          alt="Post Owner"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
+            "
+            :src="post.user.profilePicture"
+            alt="Post Owner"
           />
         </div>
         <div class="post-user-detail">
