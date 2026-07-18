@@ -1,6 +1,5 @@
 <template>
     <div class="layout-container">
-      <HeaderComponent></HeaderComponent>
   
       <main>
         <router-view />
