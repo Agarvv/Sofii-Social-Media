@@ -1,5 +1,4 @@
 <template>
-  <HeaderComponent />  
   <div class="layout">
     <div class="aside">
       <AsideComponent /> 

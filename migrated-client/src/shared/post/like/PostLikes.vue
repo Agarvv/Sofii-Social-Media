@@ -34,6 +34,7 @@ export default defineComponent({
         const { socket } = useSocket();
 
         const like = async () => {
+            likes.value.push()
             const data = await apiService.post('/posts/like', { postId: props.postId });
             console.log('Data from like:', data);
         };
@@ -42,6 +43,7 @@ export default defineComponent({
             socket.instance.on('likePost', (liked: Like) => {
                 if (liked.post_id === props.postId && !likes.value.some(like => like.user_id === liked.user_id)) {
                     likes.value.push(liked);
+                    
                     if (liked.user_id === userId) isLiked.value = true;
                     console.log('Post liked via WebSocket:', liked);
                 }
