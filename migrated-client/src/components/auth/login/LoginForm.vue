@@ -28,10 +28,9 @@
         </form>
       </div>
       
-      <div class="login-social-media"> 
-        <div class="social-buttons">
-        </div>
-      </div>
+    
+
+
     </div>
   </div>
 </template>
