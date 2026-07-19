@@ -169,10 +169,7 @@ form .remember-me {
   gap: 5px;
 }
 
-form .form-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+
 
 form .form-links div {
   padding: 15px;
