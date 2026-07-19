@@ -30,6 +30,7 @@
       
       <div class="login-social-media"> 
         <div class="social-buttons">
+          <p>the social media.</p>
         </div>
       </div>
 
