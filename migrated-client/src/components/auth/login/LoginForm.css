@@ -106,8 +106,6 @@
 }
 
 .login-social-media {
-  height: 500px;
-  background-color: #34495E;
   color: white;
   display: flex;
   flex-direction: column;
