@@ -1,5 +1,7 @@
 <template>
     <div class="layout-container">
+
+        <HeaderComponent />  
   
       <main>
         <router-view />
@@ -10,12 +12,12 @@
   
   <script lang="ts">
    import { defineComponent } from 'vue'
-   //import HeaderComponent from '@/shared/header/HeaderComponent.vue';
+   import HeaderComponent from '@/shared/header/HeaderComponent.vue';
   
    export default defineComponent({
       name: 'MainLayout',
       components: {
-     //     HeaderComponent, 
+          HeaderComponent, 
       },
    });
   </script>

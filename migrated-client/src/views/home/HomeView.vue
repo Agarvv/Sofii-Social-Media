@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />  
+
   <div class="layout">
     <div class="aside">
       <AsideComponent /> 
@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'; 
-import HeaderComponent from '@/shared/header/HeaderComponent.vue';
+//import HeaderComponent from '@/shared/header/HeaderComponent.vue';
 import AsideComponent from '@/shared/aside/AsideComponent.vue';
 import UsersMayLike from '@/components/home/users-may-like/UsersMayLike.vue';
 import { useGet } from '@/composables/useGet';
@@ -36,7 +36,7 @@ import { useSocket } from '@/composables/useWebSocket';
 export default defineComponent({
   name: 'HomeView',
   components: {
-    HeaderComponent,
+  //  HeaderComponent,
     AsideComponent,
     UsersMayLike,
     PostCard
