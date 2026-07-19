@@ -8,6 +8,10 @@
   flex: 1; 
 }
 
+main {
+  padding: 0; 
+}
+
 .aside {
   width: 250px;
 
