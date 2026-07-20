@@ -1,9 +1,12 @@
 <template>
 
   <div class="layout">
-    <div class="aside">
+    <!--- 
+         <div class="aside">
       <AsideComponent /> 
     </div>
+    -->
+
     
     <main class="main">
       <div class="posts">
