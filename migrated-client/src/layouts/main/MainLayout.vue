@@ -1,14 +1,21 @@
 <template>
     <div class="layout-container">
 
-        <HeaderComponent />  
+        <div class="c">
+          <HeaderComponent />  
         
-        <AsideComponent />
-        
-  
-      <main>
+         <div>
+
+          <AsideComponent />
+        <main>
         <router-view />
       </main>
+      
+         </div>
+        
+        </div>
+  
+      
   
     </div>
   </template>
