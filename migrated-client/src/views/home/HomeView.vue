@@ -27,7 +27,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'; 
 //import HeaderComponent from '@/shared/header/HeaderComponent.vue';
-import AsideComponent from '@/shared/aside/AsideComponent.vue';
+//import AsideComponent from '@/shared/aside/AsideComponent.vue';
 import UsersMayLike from '@/components/home/users-may-like/UsersMayLike.vue';
 import { useGet } from '@/composables/useGet';
 import PostCard from '@/shared/post/PostCard.vue';
@@ -40,7 +40,7 @@ export default defineComponent({
   name: 'HomeView',
   components: {
   //  HeaderComponent,
-    AsideComponent,
+ //   AsideComponent,
     UsersMayLike,
     PostCard
   },
