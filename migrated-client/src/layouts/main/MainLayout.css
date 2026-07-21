@@ -1,5 +1,9 @@
 .c {
     display: flex;
     flex-direction: column;
-    
+
+}
+
+.c div {
+    display: flex;
 }
