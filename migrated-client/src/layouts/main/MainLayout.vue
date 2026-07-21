@@ -4,13 +4,13 @@
         <div class="c">
           <HeaderComponent />  
         
-         <div>
+         <div class="cd">
 
           <AsideComponent />
         <main>
         <router-view />
       </main>
-      
+
          </div>
         
         </div>
