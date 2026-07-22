@@ -51,6 +51,21 @@ const routes: Array<RouteRecordRaw> = [
     }
   },  
   {
+        path: 'chat/:id',
+        component: ChatView,
+        name: "chat",
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'search/:query',
+        component: SearchView,
+        meta: {
+          requiresAuth: true
+        }
+      },
+  {
     path: '/',
     component: MainLayout, 
     meta: {
@@ -88,21 +103,7 @@ const routes: Array<RouteRecordRaw> = [
           requiresAuth: true
         }
       },
-      {
-        path: 'chat/:id',
-        component: ChatView,
-        name: "chat",
-        meta: {
-          requiresAuth: true
-        }
-      },
-      {
-        path: 'search/:query',
-        component: SearchView,
-        meta: {
-          requiresAuth: true
-        }
-      },
+      
       {
         path: 'chats',
         component: ChatsView,
